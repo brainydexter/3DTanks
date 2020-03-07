@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,14 @@ public class TankManager : MonoBehaviour
         }
 
         DistributeTanks();
+
+        SetStartingTank();
+    }
+
+    private void SetStartingTank()
+    {
+        m_currentTank = m_tanks[Random.Range(0, NumTanks)];
+        m_currentTank.EnableInput();
     }
 
     private void DistributeTanks()
@@ -35,5 +42,6 @@ public class TankManager : MonoBehaviour
     public Tank m_tankPrefab;
 
     public Tank[] m_tanks;
+    public Tank m_currentTank;
     #endregion
 }
