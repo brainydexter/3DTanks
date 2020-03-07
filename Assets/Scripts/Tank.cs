@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MyPlayerScript : MonoBehaviour
+public class Tank : MonoBehaviour
 {
     //public void OnFire(InputAction.CallbackContext context)
     //{
