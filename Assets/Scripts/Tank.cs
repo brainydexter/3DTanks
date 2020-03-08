@@ -4,29 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Tank : MonoBehaviour
+public abstract class ITank : MonoBehaviour
 {
-    private void Awake()
-    {
-        m_inputSystem = GetComponent<PlayerInput>();
-        //m_inputSystem.enabled = false;
-    }
+    public abstract void GiveTurn();
+}
 
-
+public class Tank : ITank
+{
     public void OnMove(InputValue value)
     {
-        transform.Translate(value.Get<Vector2>().x, 0, 0);
+        if(IsMyTurn)
+        {
+            transform.Translate(value.Get<Vector2>().x, 0, 0);
+        }
     }
 
-    public void OnFire()
+    public override void GiveTurn()
     {
-        Debug.Log("OnFire");
+        IsMyTurn = true;
     }
 
-    internal void EnableInput()
-    {
-        m_inputSystem.enabled = true;
-    }
+    #region Members
 
-    public PlayerInput m_inputSystem;
+    public bool IsMyTurn { get; private set; }
+
+    #endregion
 }

@@ -16,6 +16,8 @@ public class TankManager : MonoBehaviour
             m_tanks[i] = Instantiate<Tank>(m_tankPrefab, transform);
         }
 
+        m_tankPrefab = null;
+
         DistributeTanks();
 
         SetStartingTank();
@@ -24,7 +26,7 @@ public class TankManager : MonoBehaviour
     private void SetStartingTank()
     {
         m_currentTank = m_tanks[Random.Range(0, NumTanks)];
-        m_currentTank.EnableInput();
+        m_currentTank.GiveTurn();
     }
 
     private void DistributeTanks()
@@ -41,7 +43,7 @@ public class TankManager : MonoBehaviour
 
     public Tank m_tankPrefab;
 
-    public Tank[] m_tanks;
-    public Tank m_currentTank;
+    public ITank[] m_tanks;
+    public ITank m_currentTank;
     #endregion
 }
